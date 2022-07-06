@@ -1,0 +1,11 @@
+{
+  "0 error pnpm": {
+    "code": "ERR_PNPM_FILTER_CHANGED",
+    "err": {
+      "name": "pnpm",
+      "message": "Filtering by changed packages failed. error: Could not access ':COMMIT_SHA'",
+      "code": "ERR_PNPM_FILTER_CHANGED",
+      "stack": "pnpm: Filtering by changed packages failed. error: Could not access ':COMMIT_SHA'\n    at getChangedDirsSinceCommit (C:\\Users\\admin\\AppData\\Roaming\\npm\\node_modules\\pnpm\\dist\\pnpm.cjs:51629:15)\n    at processTicksAndRejections (node:internal/process/task_queues:96:5)\n    at async changedSince (C:\\Users\\admin\\AppData\\Roaming\\npm\\node_modules\\pnpm\\dist\\pnpm.cjs:51586:28)\n    at async _filterGraph (C:\\Users\\admin\\AppData\\Roaming\\npm\\node_modules\\pnpm\\dist\\pnpm.cjs:51850:53)\n    at async filterGraph (C:\\Users\\admin\\AppData\\Roaming\\npm\\node_modules\\pnpm\\dist\\pnpm.cjs:51829:115)\n    at async filterPkgsBySelectorObjects (C:\\Users\\admin\\AppData\\Roaming\\npm\\node_modules\\pnpm\\dist\\pnpm.cjs:51793:27)\n    at async run (C:\\Users\\admin\\AppData\\Roaming\\npm\\node_modules\\pnpm\\dist\\pnpm.cjs:192545:31)\n    at async runPnpm (C:\\Users\\admin\\AppData\\Roaming\\npm\\node_modules\\pnpm\\dist\\pnpm.cjs:192785:5)\n    at async C:\\Users\\admin\\AppData\\Roaming\\npm\\node_modules\\pnpm\\dist\\pnpm.cjs:192777:7"
+    }
+  }
+}
