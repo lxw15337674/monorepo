@@ -1,29 +1,43 @@
-import React from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import React, { useRef } from 'react';
+import initStore from './initStore';
+import { Container } from './styled';
+export interface IState {
+  theme: string;
+  color: string;
+}
+const initialState: IState = {
+  theme: 'dark',
+  color: 'red',
+};
 
-import Nav from './components/Nav'
+const a = new Promise(res => {
+  console.log(6);
+  res();
+}).then(res => {
+  console.log(1);
+  Promise.resolve().then(() => {
+    console.log(7);
+  });
+});
+a;
+console.log(3);
+setTimeout(() => {
+  console.log(4);
+});
 
-import Home from './views/Home'
-import About from './views/About'
-import NotFound from './views/NotFound'
-
-const App = () => {
+const Example = () => {
+  const bc = useRef(new BroadcastChannel('AlienZHOU')).current;
+  bc.onmessage = function(e) {
+    const data = e.data;
+    const text = '[receive] ' + data.msg + ' —— tab ' + data.from;
+    console.log('[BroadcastChannel] receive message:', text);
+  };
   return (
-    <Router>
-      <Nav />
-      <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route path="/about">
-          <About />
-        </Route>
-        <Route>
-          <NotFound />
-        </Route>
-      </Switch>
-    </Router>
+    <div>
+      <input />
+      <button onClick={() => bc.postMessage('hello')}>postMessage</button>
+    </div>
   );
 };
 
-export default App;
+export default Example;
