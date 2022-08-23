@@ -1,0 +1,16 @@
+{
+  "name": "prism",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "prismjs": "^1.28.0",
+    "utils": "workspace:*"
+  }
+}
