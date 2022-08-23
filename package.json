@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev:core": "pnpm dev --filter react"
+    "dev:core": "pnpm dev --filter react",
+    "start:prism": "pnpm -C ./packages/prism/ start"
+
   },
   "keywords": [],
   "author": "",

@@ -10,7 +10,8 @@ export const ConditionStructureAttr = 'conditionStructureAttr';
 export const Attribute = 'attribute';
 export const Bracket = 'bracket';
 export const RecursiveCondition = 'recursiveCondition';
-export const IdentifierReg = /\+|\&|\-|\=|\&|>|\,|<|>=|=|<=|!=|\*|\/|%|\^|\[|\]|\(|\.|\s/gi;
+export const IdentifierReg =
+  /\+|\&|\-|\=|\&|>|\,|<|>=|=|<=|!=|\*|\/|%|\^|\[|\]|\(|\.|\s/gi;
 export const StringReg = /"\S*"/g;
 export const BracketReg = /\[|\]|\(|\)/g;
 export const FunctionReg = /(sum|concatenate|q|floor|ceil)(.*\)|[^\)]*)/gi;
@@ -42,154 +43,161 @@ export const Variable = 'variable';
 export const NormalFunction = 'NormalFunction';
 
 let budgetConditionRule: Prism.Grammar = {
-    [ConditionLogical]: {
-        pattern: ConditionLogicalSymbol,
-    },
-    [ConditionStructureAttr]: {
-        pattern: ConditionStructureAttrReg,
-        inside: {
-            [Identifier]: { pattern: IdentifierReg },
-            [Structure]: {
-                pattern: ConditionStructureReg,
-                alias: Variable,
-                greedy: true,
-            },
-            [Attribute]: {
-                pattern: /(?<=\.)[\u4e00-\u9fa5a-zA-Z]+/gi,
-                alias: Variable,
-                greedy: true,
-            },
-        },
-    },
-    [Identifier]: { pattern: IdentifierReg },
-    [Attribute]: {
-        pattern: textReg,
+  [ConditionLogical]: {
+    pattern: ConditionLogicalSymbol,
+  },
+  [ConditionStructureAttr]: {
+    pattern: ConditionStructureAttrReg,
+    inside: {
+      [Identifier]: { pattern: IdentifierReg },
+      [Structure]: {
+        pattern: ConditionStructureReg,
         alias: Variable,
+        greedy: true,
+      },
+      [Attribute]: {
+        pattern: /(?<=\.)[\u4e00-\u9fa5a-zA-Z]+/gi,
+        alias: Variable,
+        greedy: true,
+      },
     },
+  },
+  [Identifier]: { pattern: IdentifierReg },
+  [Attribute]: {
+    pattern: textReg,
+    alias: Variable,
+  },
 };
 
 const RecursiveConditionRule: GrammarValue = {
-    // pattern: RecursiveConditionReg,
-    pattern: /(?<=\()(.+?)(?=\))/,
-    inside: budgetConditionRule,
-    greedy: true,
+  // pattern: RecursiveConditionReg,
+  pattern: /(?<=\()(.+?)(?=\))/,
+  inside: budgetConditionRule,
+  greedy: true,
 };
 
 // 支持条件嵌套
 budgetConditionRule = { RecursiveConditionRule, ...budgetConditionRule };
 
 export const budgetFunctionGrammar: GrammarValue = {
-    pattern: BudgetFunctionReg,
-    inside: {
-        [FunctionName]: {
-            pattern: BudgetFunctionSymbolReg,
-            alias: FunctionName,
-        },
-        [BudgetFunctionContent]: {
-            pattern: BudgetFunctionContentReg,
-            inside: {
-                [Cell]: {
-                    pattern: CELL_REGEX,
-                    alias: Variable,
-                },
-                [MainStructure]: {
-                    pattern: MainStructureReg,
-                    alias: [MainStructure, Variable],
-                },
-                [Condition]: {
-                    pattern: ConditionReg,
-                    inside: budgetConditionRule,
-                },
-                [Identifier]: /\./,
-                [Attribute]: {
-                    pattern: /.+/,
-                    inside: {
-                        [FunctionName]: {
-                            pattern: AttributeFunctionNameReg,
-                            alias: FunctionName,
-                        },
-                        [Identifier]: { pattern: IdentifierReg },
-                        [Variable]: {
-                            pattern: AttributeReg,
-                            alias: Variable,
-                        },
-                    },
-                    alias: Variable,
-                },
-            },
-            greedy: true,
-        },
-        [Cell]: {
-            pattern: CELL_REGEX,
-            alias: Variable,
-            greedy: true,
-        },
-        [Identifier]: IdentifierReg,
+  pattern: BudgetFunctionReg,
+  inside: {
+    [FunctionName]: {
+      pattern: BudgetFunctionSymbolReg,
+      alias: FunctionName,
     },
+    [BudgetFunctionContent]: {
+      pattern: BudgetFunctionContentReg,
+      inside: {
+        [Cell]: {
+          pattern: CELL_REGEX,
+          alias: Variable,
+        },
+        [MainStructure]: {
+          pattern: MainStructureReg,
+          alias: [MainStructure, Variable],
+        },
+        [Condition]: {
+          pattern: ConditionReg,
+          inside: budgetConditionRule,
+        },
+        [Identifier]: /\./,
+        [Attribute]: {
+          pattern: /.+/,
+          inside: {
+            [FunctionName]: {
+              pattern: AttributeFunctionNameReg,
+              alias: FunctionName,
+            },
+            [Identifier]: { pattern: IdentifierReg },
+            [Variable]: {
+              pattern: AttributeReg,
+              alias: Variable,
+            },
+          },
+          alias: Variable,
+        },
+      },
+      greedy: true,
+    },
+    [Cell]: {
+      pattern: CELL_REGEX,
+      alias: Variable,
+      greedy: true,
+    },
+    [Identifier]: IdentifierReg,
+  },
 };
 
 export const normalFunctionGrammar: GrammarValue = {
-    pattern: NormalFunctionReg,
-    inside: {
-        [FunctionName]: { pattern: NormalFunctionNameReg, alias: FunctionName },
-        item: {
-            pattern: /(?<=\().*/gi,
-            inside: {
-                [Identifier]: { pattern: IdentifierReg },
-                [Cell]: {
-                    pattern: CELL_REGEX,
-                    alias: Variable,
-                },
-                [Col]: {
-                    pattern: COL_REGEX,
-                    alias: Variable,
-                },
-            },
+  pattern: NormalFunctionReg,
+  inside: {
+    [FunctionName]: { pattern: NormalFunctionNameReg, alias: FunctionName },
+    item: {
+      pattern: /(?<=\().*/gi,
+      inside: {
+        [Identifier]: { pattern: IdentifierReg },
+        [Cell]: {
+          pattern: CELL_REGEX,
+          alias: Variable,
         },
+        [Col]: {
+          pattern: COL_REGEX,
+          alias: Variable,
+        },
+      },
     },
+  },
 };
 
 export const functionGrammar: GrammarValue = {
-    pattern: FunctionReg,
-    inside: {
-        [BudgetFunction]: budgetFunctionGrammar,
-        [NormalFunction]: normalFunctionGrammar,
-    },
-    greedy: true,
+  pattern: FunctionReg,
+  inside: {
+    [BudgetFunction]: budgetFunctionGrammar,
+    [NormalFunction]: normalFunctionGrammar,
+  },
+  greedy: true,
 };
 
 // @ts-ignore
 // 支持函数嵌套
-normalFunctionGrammar.inside.item.inside.subfunction = { ...functionGrammar, greed: true };
+normalFunctionGrammar.inside.item.inside.subfunction = {
+  ...functionGrammar,
+  greed: true,
+};
 
 export const FormulaGrammar: Grammar = {
-    formula: {
-        pattern: /^=.*/,
-        inside: {
-            [Cell]: {
-                pattern: CELL_REGEX,
-                alias: Variable,
-            },
-            [Col]: {
-                pattern: COL_REGEX,
-                alias: Variable,
-            },
-            string: {
-                pattern: StringReg,
-                greedy: true,
-            },
-            identifier: {
-                pattern: IdentifierReg,
-            },
-            function: functionGrammar,
-        },
+  formula: {
+    pattern: /^=.*/,
+    inside: {
+      [Cell]: {
+        pattern: CELL_REGEX,
+        alias: Variable,
+      },
+      [Col]: {
+        pattern: COL_REGEX,
+        alias: Variable,
+      },
+      string: {
+        pattern: StringReg,
+        greedy: true,
+      },
+      identifier: {
+        pattern: IdentifierReg,
+      },
+      function: functionGrammar,
     },
+  },
 };
 export default Prism;
 
 export const styleMap = new Map<string, string>([
-    [FunctionName, '#1c919c'],
-    [Variable, '#411686'],
+  [FunctionName, '#1c919c'],
+  [Variable, '#411686'],
 ]);
 
-Prism.tokenize('=CONCATENATE(C1, (C2+C3/C4*C5-C6), C7,C8,C9)', FormulaGrammar);
+const test = Prism.tokenize(
+  '=CONCATENATE(C1, (C2+C3/C4*C5-C6), C7,C8,C9)',
+  FormulaGrammar,
+);
+console.log(test);

@@ -47,14 +47,24 @@ importers:
 
   packages/prism:
     specifiers:
+      '@types/node': ^18.7.11
       prismjs: ^1.28.0
+      tslib: ^2.4.0
       utils: workspace:*
     dependencies:
       prismjs: 1.28.0
       utils: link:../utils
+    devDependencies:
+      '@types/node': 18.7.11
+      tslib: 2.4.0
 
   packages/react:
-    specifiers: {}
+    specifiers:
+      '@types/node': ^18.7.11
+      tslib: ^2.4.0
+    devDependencies:
+      '@types/node': 18.7.11
+      tslib: 2.4.0
 
   packages/utils:
     specifiers:
@@ -410,6 +420,10 @@ packages:
 
   /@types/lodash/4.14.184:
     resolution: {integrity: sha512-RoZphVtHbxPZizt4IcILciSWiC6dcn+eZ8oX9IWEYfDMcocdd42f7NPI6fQj+6zI8y4E0L7gu2pcZKLGTRaV9Q==}
+    dev: true
+
+  /@types/node/18.7.11:
+    resolution: {integrity: sha512-KZhFpSLlmK/sdocfSAjqPETTMd0ug6HIMIAwkwUpU79olnZdQtMxpQP+G1wDzCH7na+FltSIhbaZuKdwZ8RDrw==}
     dev: true
 
   /@types/prop-types/15.7.5:
@@ -2171,6 +2185,10 @@ packages:
 
   /tslib/1.14.1:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
+    dev: true
+
+  /tslib/2.4.0:
+    resolution: {integrity: sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==}
     dev: true
 
   /tsutils/3.21.0_typescript@4.7.4:
