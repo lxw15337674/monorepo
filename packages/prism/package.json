@@ -11,8 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "prismjs": "^1.28.0",
-    "utils": "workspace:*"
+    "prismjs": "^1.28.0"
   },
   "devDependencies": {
     "@types/node": "^18.7.11",

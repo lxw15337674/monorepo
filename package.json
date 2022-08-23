@@ -6,7 +6,9 @@
   "scripts": {
     "dev:core": "pnpm dev --filter react",
     "start:prism": "pnpm -C ./packages/prism/ start",
-    "test:prism": "pnpm -C ./packages/prism/ test"
+    "test:prism": "pnpm -C ./packages/prism/ test",
+    "test":"jest"
+
   },
   "keywords": [], 
   "author": "",
