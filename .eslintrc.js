@@ -28,6 +28,6 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'warn',
     'react/display-name': 'off',
     'no-param-reassign': 'off',
-    'max-params': '4',
+    'max-params': '0',
   },
 };
