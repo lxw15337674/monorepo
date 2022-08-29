@@ -54,9 +54,6 @@ importers:
   packages/core:
     specifiers: {}
 
-  packages/own-react:
-    specifiers: {}
-
   packages/own-react1:
     specifiers:
       '@types/react': ^18.0.17
@@ -64,7 +61,6 @@ importers:
       '@vitejs/plugin-react': ^2.0.1
       react: ^18.2.0
       react-dom: ^18.2.0
-      typescript: ^4.6.4
       vite: ^3.0.7
     dependencies:
       react: 18.2.0
@@ -73,16 +69,13 @@ importers:
       '@types/react': 18.0.17
       '@types/react-dom': 18.0.6
       '@vitejs/plugin-react': 2.0.1_vite@3.0.9
-      typescript: 4.7.4
       vite: 3.0.9
 
   packages/react:
     specifiers:
       '@types/node': ^18.7.11
-      tslib: ^2.4.0
     devDependencies:
       '@types/node': 18.7.11
-      tslib: 2.4.0
 
 packages:
 
@@ -4979,10 +4972,6 @@ packages:
 
   /tslib/1.14.1:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
-    dev: true
-
-  /tslib/2.4.0:
-    resolution: {integrity: sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==}
     dev: true
 
   /tsutils/3.21.0_typescript@4.7.4:
