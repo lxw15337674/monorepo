@@ -1,14 +1,15 @@
 {
   "name": "react",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "serve": "vite preview",
     "start": "vite"
   },
-  "devDependencies": {
-    "@types/node": "^18.7.11",
-    "tslib": "^2.4.0"
+  "dependencies": {
+    "slate": "^0.82.1",
+    "slate-history": "^0.66.0",
+    "slate-react": "^0.82.2"
   }
 }
