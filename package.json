@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev:react": "pnpm -C ./packages/react/ dev",
-    "start:prism": "pnpm -C ./packages/prism/ start",
-    "test:prism": "pnpm -C ./packages/prism/ test",
+    "start:core": "pnpm -C ./packages/core/ start",
     "test": "jest"
   },
   "keywords": [],
