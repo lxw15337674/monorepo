@@ -1,58 +1,24 @@
-import React, { useMemo, useState } from 'react';
-import { createEditor, Descendant } from 'slate';
-import { Slate, Editable, withReact } from 'slate-react';
-import { withHistory } from 'slate-history';
-
-const initialValue: Descendant[] = [
-  {
-    type: 'paragraph',
-    children: [
-      {
-        text: 'In addition to nodes that contain editable text, you can insert void nodes, which can also contain editable elements, inputs, or an entire other Slate editor.',
-      },
-    ],
-  },
-  {
-    type: 'button',
-    children: [{ text: 'this is button' }],
-  },
-];
-
-const withEditableVoids = (e) => {
-  const { apply } = e;
-  e.apply = (op) => {
-    apply(op);
-    console.log(e);
-  };
-  return e;
-};
-
-const Element = (props) => {
-  const { attributes, children, element } = props;
-
-  switch (element.type) {
-    case 'button':
-      return <button>this is button</button>;
-    default:
-      return <p {...attributes}>{children}</p>;
-  }
-};
-
+import React from 'react';
 const PlainTextExample = () => {
-  const editor = useMemo(
-    () => withEditableVoids(withHistory(withReact(createEditor()))),
-    [],
-  );
-  const [value, setValue] = useState<Descendant[]>([]);
   return (
-    <Slate editor={editor} value={initialValue} onChange={setValue}>
-      <div style={{ border: 'black 1px solid' }}>
-        <Editable
-          renderElement={(props) => <Element {...props} />}
-          placeholder="Enter some plain text..."
-        />
+    <div>
+      <div
+        className="bg-[#1da1f2] h-10"
+        onClick={(e) => {
+          console.log('blue');
+        }}
+      >
+        blue
       </div>
-    </Slate>
+      <div
+        className="bg-[red] absolute left-0 top-0 w-12 pointer-events-none"
+        onClick={(e) => {
+          console.log('red');
+        }}
+      >
+        red
+      </div>
+    </div>
   );
 };
 
