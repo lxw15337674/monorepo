@@ -1,5 +1,5 @@
 {
-  "name": "slate",
+  "name": "react",
   "version": "0.0.1",
   "scripts": {
     "dev": "vite",
@@ -8,5 +8,6 @@
     "start": "vite"
   },
   "dependencies": {
+    "ahooks": "^3.7.1"
   }
 }
