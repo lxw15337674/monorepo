@@ -1,15 +1,21 @@
-import "reflect-metadata";
+const DEFAULT_RUNTIME = 16;
+let sum = 0;
+const runner = (tasks) => {
+  const prevTime = performance.now();
+  do {
+    if (tasks.length === 0) {
+      return;
+    }
+    const task = tasks.shift();
+    const value = task();
+    sum += value;
+  } while (performance.now() - prevTime < DEFAULT_RUNTIME);
 
-const validator = (target: Object, propertyKey: string, index: number) => {
+  setTimeout(() => runner(tasks));
+};
 
+console.time();
+for (let i = 0; i < 10000; i++) {
+  for (let j = 0; j < 1000000; j++) { }
 }
-class C {
-  add(@validator x: number, y: number) {
-    return x + y;
-  }
-}
-
-const c = new C();
-c.add(1, 2);
-// -> params: 1, 2
-// -> result: 3
+console.timeEnd();
